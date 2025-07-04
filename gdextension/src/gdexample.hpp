@@ -1,6 +1,7 @@
 #ifndef GDEXAMPLE_HPP
 #define GDEXAMPLE_HPP
 
+#include <godot_cpp/classes/wrapped.hpp>
 #include <godot_cpp/classes/sprite2d.hpp>
 // we will work
 // mostly in the godot environment
@@ -15,7 +16,7 @@ namespace godot
 	// like a sprite2d as well other than making other behavior for it
 	class GDExample : public Sprite2D
 	{
-	GDCLASS(GDExample, Sprite2D);
+		GDCLASS(GDExample, Sprite2D);
 
 		private:
 			double time_passed;

@@ -327,25 +327,15 @@ Sezione 2: Procedura di Sviluppo di GDExtension
 
 Domande a Risposta Breve
 
-1.
+1. **Qual è il primo passo per impostare un nuovo progetto GDExtension in C++ utilizzando il template ufficiale?** Il primo passo è andare al progetto template godot-cpp su GitHub, utilizzare il pulsante "Use this template" per creare un nuovo repository, e quindi clonare quel repository localmente utilizzando git clone --recursive per includere il sottomodulo godot-cpp.
 
-**Qual è il primo passo per impostare un nuovo progetto GDExtension in C++ utilizzando il template ufficiale?**Il primo passo è andare al progetto template godot-cpp su GitHub, utilizzare il pulsante "Use this template" per creare un nuovo repository, e quindi clonare quel repository localmente utilizzando git clone --recursive per includere il sottomodulo godot-cpp.
+2. **Perché è importante usare --recursive quando si clona il repository del template godot-cpp?** È importante perché il repository del template godot-cpp include godot-cpp come sottomodulo Git. L'opzione --recursive assicura che anche il sottomodulo venga inizializzato e scaricato, fornendo tutte le dipendenze necessarie per la compilazione.
 
-2.
+3. **Qual è lo scopo del file SConstruct e cosa bisogna modificare al suo interno in un nuovo progetto GDExtension?** Il file SConstruct è il file di configurazione per il sistema di build SCons. In un nuovo progetto GDExtension, è necessario modificare extension_name per dare un nome specifico all'estensione e, se applicabile, project_path se la cartella del progetto demo di Godot è stata rinominata.
 
-**Perché è importante usare --recursive quando si clona il repository del template godot-cpp?**È importante perché il repository del template godot-cpp include godot-cpp come sottomodulo Git. L'opzione --recursive assicura che anche il sottomodulo venga inizializzato e scaricato, fornendo tutte le dipendenze necessarie per la compilazione.
+4. **Come si assicura che Godot trovi la libreria dinamica della tua GDExtension su diverse piattaforme?** Si assicura che Godot trovi la libreria dinamica della GDExtension configurando la sezione [libraries] nel file .gdextension. Questa sezione specifica i percorsi ai file della libreria (.dll, .so, .dylib, .xcframework) per ciascuna piattaforma e configurazione (debug/release).
 
-3.
-
-**Qual è lo scopo del file SConstruct e cosa bisogna modificare al suo interno in un nuovo progetto GDExtension?**Il file SConstruct è il file di configurazione per il sistema di build SCons. In un nuovo progetto GDExtension, è necessario modificare extension_name per dare un nome specifico all'estensione e, se applicabile, project_path se la cartella del progetto demo di Godot è stata rinominata.
-
-4.
-
-**Come si assicura che Godot trovi la libreria dinamica della tua GDExtension su diverse piattaforme?**Si assicura che Godot trovi la libreria dinamica della GDExtension configurando la sezione [libraries] nel file .gdextension. Questa sezione specifica i percorsi ai file della libreria (.dll, .so, .dylib, .xcframework) per ciascuna piattaforma e configurazione (debug/release).
-
-5.
-
-**Quali sono i passaggi per aggiornare la documentazione interna della tua GDExtension in Godot?**Per aggiornare la documentazione, si usa il comando godot --doc-tool --gdextension-docs <output_directory> dalla directory del progetto Godot per generare i file XML. Una volta modificati (aggiungendo descrizioni, ecc.), basta ricompilare il progetto GDExtension con SCons, e la documentazione sarà integrata.
+5. **Quali sono i passaggi per aggiornare la documentazione interna della tua GDExtension in Godot?** Per aggiornare la documentazione, si usa il comando godot --doc-tool --gdextension-docs <output_directory> dalla directory del progetto Godot per generare i file XML. Una volta modificati (aggiungendo descrizioni, ecc.), basta ricompilare il progetto GDExtension con SCons, e la documentazione sarà integrata.
 
 --------------------------------------------------------------------------------
 
@@ -353,49 +343,15 @@ Sezione 3: Esempi Pratici e Concetti Avanzati
 
 Domande a Risposta Breve
 
-1.
+1. Spiega l'uso di memnew in GDExtension C++ invece dell'operatore new standard. memnew è un macro speciale che deve essere utilizzato per istanziare oggetti Godot in C++ (anche all'interno del motore stesso). Questo perché Godot utilizza un allocatore di memoria personalizzato e richiede un'inizializzazione speciale, che l'operatore new standard non fornisce. L'uso di new potrebbe causare crash.
 
-Spiega l'uso di memnew in GDExtension C++ invece dell'operatore new standard. memnew è un macro speciale che deve essere utilizzato per istanziare oggetti Godot in C++ (anche all'interno del motore stesso). Questo perché Godot utilizza un allocatore di memoria personalizzato e richiede un'inizializzazione speciale, che l'operatore new standard non fornisce. L'uso di new potrebbe causare crash.
+2. **Perché _notification può essere preferibile a _ready quando si estende il motore con una GDExtension?** La funzione _notification (in particolare per NOTIFICATION_READY) è spesso preferita a _ready nelle GDExtension che estendono il motore perché _ready da uno script GDScript può sovrascrivere _ready dalla classe nativa. Usare _notification evita questo conflitto e mima il comportamento interno del motore.
 
-2.
+3. **Come si registrano i valori di un enum C++ con Godot in una GDExtension?** Per registrare i valori di un enum C++ con Godot, si usa ClassDB::bind_enum_constant all'interno della funzione _bind_methods. È anche necessario utilizzare VARIANT_ENUM_CAST per consentire il casting da e verso Variant.
 
-**Perché _notification può essere preferibile a _ready quando si estende il motore con una GDExtension?**La funzione _notification (in particolare per NOTIFICATION_READY) è spesso preferita a _ready nelle GDExtension che estendono il motore perché _ready da uno script GDScript può sovrascrivere _ready dalla classe nativa. Usare _notification evita questo conflitto e mima il comportamento interno del motore.
+4. **Descrivi come implementare e chiamare un metodo virtuale GD in una GDExtension C++.** Per implementare un metodo virtuale GD, si dichiara una funzione con il prefisso _ (es. _get_next_light) e si utilizza il macro GDVIRTUAL per la registrazione in _bind_methods, specificando il numero di argomenti, se ha un valore di ritorno (R), e se è const (C). La chiamata avviene tramite GDVIRTUAL_CALL.
 
-3.
-
-**Come si registrano i valori di un enum C++ con Godot in una GDExtension?**Per registrare i valori di un enum C++ con Godot, si usa ClassDB::bind_enum_constant all'interno della funzione _bind_methods. È anche necessario utilizzare VARIANT_ENUM_CAST per consentire il casting da e verso Variant.
-
-4.
-
-**Descrivi come implementare e chiamare un metodo virtuale GD in una GDExtension C++.**Per implementare un metodo virtuale GD, si dichiara una funzione con il prefisso _ (es. _get_next_light) e si utilizza il macro GDVIRTUAL per la registrazione in _bind_methods, specificando il numero di argomenti, se ha un valore di ritorno (R), e se è const (C). La chiamata avviene tramite GDVIRTUAL_CALL.
-
-5.
-
-**Qual è l'obiettivo delle "runtime classes" in GDExtension e come si registrano?**Le "runtime classes" sono classi GDExtension che vengono eseguite solo quando il gioco è in modalità di gioco, non nell'editor. Questo è utile per la logica di gioco che non dovrebbe influenzare il comportamento dell'editor. Si registrano usando il macro GDREGISTER_RUNTIME_CLASS invece di GDREGISTER_CLASS.
-
---------------------------------------------------------------------------------
-
-Domande in Formato Saggio
-
-1.
-
-Discuti le principali ragioni per cui uno sviluppatore potrebbe scegliere di usare GDExtension con C++ anziché GDScript per la logica di gioco in Godot. Considera vantaggi in termini di prestazioni, integrazione di librerie e complessità del progetto.
-
-2.
-
-Analizza il processo di build di un progetto GDExtension in C++ dal download del template alla generazione della libreria dinamica. Spiega il ruolo di SCons, godot-cpp, e le modifiche necessarie ai file di configurazione.
-
-3.
-
-Confronta e contrasta la gestione delle proprietà e dei segnali nelle GDExtension C++ con il modo in cui sono gestiti in GDScript. Sottolinea le differenze nella sintassi e nelle implicazioni sul flusso di lavoro.
-
-4.
-
-Spiega come le GDExtension C++ possono essere utilizzate per "estendere il motore" (ad esempio, con il caso d'uso del semaforo) e come questo differisce dallo scripting della logica di gioco. Discuti le considerazioni di design, come l'uso di _notification vs _ready, e l'integrazione con l'editor.
-
-5.
-
-Immagina di dover creare una GDExtension complessa che interagisce con un'API di terze parti (ad esempio, una libreria di fisica). Descrivi i passaggi chiave dalla progettazione alla distribuzione, includendo considerazioni su dipendenze, cross-compilazione e documentazione.
+5. **Qual è l'obiettivo delle "runtime classes" in GDExtension e come si registrano?** Le "runtime classes" sono classi GDExtension che vengono eseguite solo quando il gioco è in modalità di gioco, non nell'editor. Questo è utile per la logica di gioco che non dovrebbe influenzare il comportamento dell'editor. Si registrano usando il macro GDREGISTER_RUNTIME_CLASS invece di GDREGISTER_CLASS.
 
 --------------------------------------------------------------------------------
 

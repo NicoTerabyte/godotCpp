@@ -55,24 +55,28 @@ git commit -m "Update godot-cpp submodule"
 ```
 
 # My level of knowledge (where i am and what i want to do with this project)
-So first of all **I will not abbandon this project** It's a promise i made for a friend and to challenge myself so it's out of question. I know by myself that when the push will be done the notes that the ai gave me will be less rindondant and less at all, and that's a big mistake made by me, that learning with ai is good yes, but done properly I did just a shortcut and as a consequence when i came back to keep doing the project i spent 2:30 hours at modifying the readme, this is a lesson for me and for my future self to remember.
+So first of all **I will not abbandon this project** It's a promise i made for a friend and to challenge myself so it's out of question. I know by myself that when the push will be done the notes that the ai gave me will be less rindondant and less at all, and that's a big mistake made by me, that learning with ai is good yes, but done properly I did want to take a shortcut and as a consequence when i came back to keep doing the project i spent 2:30 hours at modifying the readme, this is a lesson for me and for my future self to remember.
 
 So we have the notes down that we can keep as reference (thanks to the ai i have slimmed them a little bit and that's good) but now i need to get a hand on the project mostly i need to keep track of my progess
 
 **progress bar:**
-![](https://geps.dev/progress/10)
+![](https://geps.dev/progress/15)
 Not much but it's an honest work.
 
-## The project's milestone
+## The project's milestones
 - [x] I'm able to create a class and make it a node to put in godot
-- [x] I made at least one game fully in godot before doing this crazy stuff that i'm doing right now that's a free dub because i did it long time ago but, we take those ![](https://preview.redd.it/who-tf-made-this-also-sweaty-eggman-v0-xe9xfr8tyd8d1.png?width=1080&crop=smart&auto=webp&s=3df8c255f37527bf2f8d59f7987973d90dbbf4ee)
+- [x] I made at least one game fully in godot before doing this crazy stuff that i'm doing right now that's a free dub because i did it long time ago but, we take those ![](https://preview.redd.it/who-tf-made-this-also-sweaty-eggman-v0-01oq07dtyd8d1.png?width=1080&crop=smart&auto=webp&s=0a8c60d3bfbbc1069af004b844bebabd63b4ed48)
 - [ ] I'm able to setup a godot environment to set up the class making or node making in order to develop my own nodes for godot (i kinda forgot how to do it)
 - [ ] I know how signal works in godot (I don't do shacks in godot since a year and a half i forgot a lot)
 - [ ] I put the "progect jenova™️" to program in cpp instead of gdscript. Take a look at their repo if you want to do that as well https://github.com/Jenova-Framework/J.E.N.O.V.A
 - [ ] I know how signals works in the gdextension development
 - [ ] I do know how to use the gdextension feature at it's fullest
 
-# Generated and slimmed notes 
+## How all of this messed up architecture works before starting to code.
+sources https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html
+**Always read the doc or else** you get most of the time stuck or like me, you forget what you are even doing
+
+# Generated and slimmed notes
 
 ## 1 Gestione del Submodule `godot-cpp`
 

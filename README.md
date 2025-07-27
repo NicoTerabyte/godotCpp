@@ -75,6 +75,12 @@ Not much but it's an honest work.
 ## How all of this messed up architecture works before starting to code.
 sources https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/gdextension_cpp_example.html
 **Always read the doc or else** you get most of the time stuck or like me, you forget what you are even doing
+I don't cover the prerequisites i will just cover the files that got put into the directory in order to start creating and coding your classes/gdnodes.
+
+*A little parenthesis*:
+the doc seems to suggest to you to go deeper by looking at the setting up the editor and the compiling sections, **BUT** the setting up doesn't seem very intuitive _in my humble opinion_ that's because the damn documentation launches you directly on that argument without making you understand how a contribution of the engine works, why you setting your environment for vscode in a certain way and etc... But we are not here for this. We are mostly to understand the compilation with scons and how we manage to use it to add the nodes in the godot project.
+
+**We got to this point next time finish to update the readme with the explanation of how to set up the development environment**
 
 # Generated and slimmed notes
 

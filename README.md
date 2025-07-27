@@ -72,7 +72,7 @@ Not much but it's an honest work.
 - [ ] I know how signals works in the gdextension development
 - [ ] I do know how to use the gdextension feature at it's fullest
 
-# Generated notes for myself (this are in italian and are created by the tool that i mentioned)
+# Generated and slimmed notes 
 
 ## 1 Gestione del Submodule `godot-cpp`
 

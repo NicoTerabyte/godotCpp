@@ -82,6 +82,8 @@ the doc seems to suggest to you to go deeper by looking at the setting up the ed
 
 **We got to this point next time finish to update the readme with the explanation of how to set up the development environment**
 
+So when we start we will only have our directory and the godot-cpp directory inside our project directory.
+
 # Generated and slimmed notes
 
 ## 1 Gestione del Submodule `godot-cpp`
